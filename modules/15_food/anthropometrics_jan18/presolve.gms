@@ -559,31 +559,53 @@ if(s15_exo_diet = 1,
 * consistent with the target year of the fader:
 
 $ifthen "%c15_exo_foodscen%" == "lin_zero_20_30"
-  i15_intake_EATLancet_all(i,kcal_scen15,EAT_scen15,kfo) = f15_intake_EATLancet("y2030",i,kcal_scen15,EAT_scen15,kfo);
+  i15_intake_EATLancet_all("y2030",i,kcal_scen15,EAT_scen15,kfo) = f15_intake_EATLancet("y2030",i,kcal_scen15,EAT_scen15,kfo);
 $else
-  i15_intake_EATLancet_all(i,kcal_scen15,EAT_scen15,kfo) = f15_intake_EATLancet("y2050",i,kcal_scen15,EAT_scen15,kfo);
+  i15_intake_EATLancet_all("y2050",i,kcal_scen15,EAT_scen15,kfo) = f15_intake_EATLancet("y2050",i,kcal_scen15,EAT_scen15,kfo);
+$endif
+
+$ifthen "%c15_exo_foodscen%" == "bespoke"
+  if((m_year(t) = 2010),
+        i15_intake_EATLancet(i,kfo) =
+                f15_intake_EATLancet("y2010",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
+    Elseif((m_year(t) = 2015)),
+            i15_intake_EATLancet(i,kfo) =
+                f15_intake_EATLancet("y2015",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
+    Elseif((m_year(t) = 2020)),
+            i15_intake_EATLancet(i,kfo) =
+                f15_intake_EATLancet("y2020",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
+    Elseif((m_year(t) = 2025)),
+            i15_intake_EATLancet(i,kfo) =
+                f15_intake_EATLancet("y2025",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);    
+    Elseif((m_year(t) = 2030)),
+            i15_intake_EATLancet(i,kfo) =
+                f15_intake_EATLancet("y2030",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
+    Elseif((m_year(t) = 2035)),
+            i15_intake_EATLancet(i,kfo) =
+                f15_intake_EATLancet("y2035",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
+    Elseif((m_year(t) = 2040)),
+            i15_intake_EATLancet(i,kfo) =
+                f15_intake_EATLancet("y2040",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
+    Elseif((m_year(t) = 2045)),
+            i15_intake_EATLancet(i,kfo) =
+                f15_intake_EATLancet("y2045",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
+    Elseif((m_year(t) = 2050)),
+            i15_intake_EATLancet(i,kfo) =
+                f15_intake_EATLancet("y2050",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
+    Elseif((m_year(t) > 2050)),
+            i15_intake_EATLancet(i,kfo) =
+                f15_intake_EATLancet("y2050",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);    
+    else
+        i15_intake_EATLancet(i,kfo) =
+                f15_intake_EATLancet("y2050",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
+    );
+    i15_intake_scen_target(t,i) = sum(kfo,i15_intake_EATLancet(i,kfo));
+$else
+   i15_intake_EATLancet_all("y2050",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo) = f15_intake_EATLancet("y2050",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
 $endif
 
 
 
-*' 1.) In a first step, the exogenous scenario diets are defined by selecting a
-*' scenario target for total daily per capita food intake and by choosing
-*' food-specific dietary patterns:
-
-$ifthen "%c15_kcal_scen%" == "healthy_BMI"
-  i15_intake_scen_target(t,i) = sum(i_to_iso(i,iso),
-        sum((sex, age), im_demography(t,iso,sex,age)*p15_intake(t,iso,sex,age,"medium") )
-         + i15_kcal_pregnancy(t,iso)
-         ) / sum(i_to_iso(i,iso),
-             sum((sex,age), im_demography(t,iso,sex,age))
-         );
-  i15_intake_EATLancet(i,kfo) =
-        i15_intake_EATLancet_all(i,"2100kcal","%c15_EAT_scen%",kfo);
-$else
-  i15_intake_EATLancet(i,kfo) =
-        i15_intake_EATLancet_all(i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
-        i15_intake_scen_target(t,i) = sum(kfo,i15_intake_EATLancet(i,kfo));
-$endif
 
 
 *' 2.) The second step defines the daily per capita intake of different food
