@@ -163,11 +163,11 @@ $title magpie
 * Repository: ./patch_inputdata
 * 
 * Used data set: additional_data_rev4.26.tgz
-* md5sum: f3c348b7428faae898b7e10ec9a89e41
+* md5sum: NA
 * Repository: https://rse.pik-potsdam.de/data/magpie/public
 * 
-* Used data set: diet_shift_test.tgz
-* md5sum: c088cad63f337646c50ec0067de0f0e3
+* Used data set: patch_IPR2022Nature_fps_220720.tgz
+* md5sum: 786c053ae0febe90638dcf0a5c85a3a3
 * Repository: ./patch_inputdata
 * 
 * Low resolution: c200
@@ -193,11 +193,8 @@ $title magpie
 * * Regionscode: 694a3a5b
 * * Call: withCallingHandlers(expr, message = messageHandler, warning = warningHandler,     error = errorHandler)
 * 
-* Warning messages:
-* 1: package 'ggplot2' was built under R version 4.2.1
-* 2: package 'tidyr' was built under R version 4.2.1
 * 
-* Last modification (input data): Mon Jul 18 23:26:53 2022
+* Last modification (input data): Wed Jul 20 17:39:59 2022
 * 
 *###################### R SECTION END (VERSION INFO) ###########################
 
@@ -223,7 +220,7 @@ $offlisting
 
 $setglobal c_timesteps  5year2050
 $setglobal c_past  till_2010
-$setglobal c_title  diet_test
+$setglobal c_title  fps
 
 scalars
 s_use_gdx   use of gdx files                                       / 2 /
