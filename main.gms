@@ -194,7 +194,7 @@ $title magpie
 * * Call: withCallingHandlers(expr, message = messageHandler, warning = warningHandler,     error = errorHandler)
 * 
 * 
-* Last modification (input data): Wed Jul 20 17:39:59 2022
+* Last modification (input data): Fri Jul 22 19:31:20 2022
 * 
 *###################### R SECTION END (VERSION INFO) ###########################
 
@@ -220,7 +220,7 @@ $offlisting
 
 $setglobal c_timesteps  5year2050
 $setglobal c_past  till_2010
-$setglobal c_title  fps
+$setglobal c_title  fps_devenrestore_COMBO
 
 scalars
 s_use_gdx   use of gdx files                                       / 2 /

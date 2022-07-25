@@ -16,4 +16,10 @@ sets
   consv_type Type of land conservation
   / protect, restore /
 
+  restoration_scens Restoration scenarios
+  / fps_nature /
+  
+  types_of_restoration Types of restoration
+  / secdforest, other, past /
+
 ;

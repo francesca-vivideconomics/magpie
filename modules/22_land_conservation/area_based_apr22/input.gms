@@ -7,9 +7,12 @@
 
 $setglobal c22_protect_scenario  fps_nature
 $setglobal c22_protect_scenario_noselect  none
+$setglobal c22_restoration_scenario  fps_nature
+
 
 scalars
 s22_restore_land  If land restoration is allowed (0=no 1=yes) / 1 /
+s22_exogenous_restoration_targets turn on or off exogenous restoration targets / 1 /
 s22_conservation_start		Land conservation target year				/ 2020 /
 s22_conservation_target		Land conservation target year				/ 2030 /
 ;
@@ -64,3 +67,8 @@ $ondelim
 $include "./modules/22_land_conservation/input/avl_land_t_iso.cs3"
 $offdelim;
 
+table f22_restoration_targets(j,restoration_scens,t_all,types_of_restoration)   Restoration targets per year (1)
+$ondelim
+$include "./modules/22_land_conservation/input/restoration_targets.csv"
+$offdelim
+;

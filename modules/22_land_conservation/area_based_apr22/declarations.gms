@@ -7,6 +7,7 @@
 
 scalars
  s22_shift number of 5-year age-classes corresponding to current time step length (1)
+ s22_exogenous_restoration_targets turn on or off exogenous restoration targets (1)
 ;
 
 parameters
