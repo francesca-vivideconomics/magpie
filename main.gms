@@ -163,11 +163,11 @@ $title magpie
 * Repository: ./patch_inputdata
 * 
 * Used data set: additional_data_rev4.26.tgz
-* md5sum: NA
+* md5sum: f3c348b7428faae898b7e10ec9a89e41
 * Repository: https://rse.pik-potsdam.de/data/magpie/public
 * 
-* Used data set: patch_IPR2022Nature_fps_220720.tgz
-* md5sum: 786c053ae0febe90638dcf0a5c85a3a3
+* Used data set: patch_IPR2022_fpsnature_220726.tgz
+* md5sum: 9cee475238d0945e018b5656714ee8ab
 * Repository: ./patch_inputdata
 * 
 * Low resolution: c200
@@ -193,8 +193,15 @@ $title magpie
 * * Regionscode: 694a3a5b
 * * Call: withCallingHandlers(expr, message = messageHandler, warning = warningHandler,     error = errorHandler)
 * 
+* Warning messages:
+* 1: In gms::update_modules_embedding() :
+*   ./modules/38_factor_costs/mixed_feb17/realization.gms not found, this realization cannot be used!
+* 2: In untar2(tarfile, files, list, exdir, restore_times) :
+*   using pax extended headers
+* 3: In load("input/spatial_header.rda") :
+*   strings not representable in native encoding will be translated to UTF-8
 * 
-* Last modification (input data): Fri Jul 22 19:31:20 2022
+* Last modification (input data): Tue Jul 26 08:53:01 2022
 * 
 *###################### R SECTION END (VERSION INFO) ###########################
 
@@ -220,7 +227,7 @@ $offlisting
 
 $setglobal c_timesteps  5year2050
 $setglobal c_past  till_2010
-$setglobal c_title  fps_devenrestore_COMBO
+$setglobal c_title  fps_nature
 
 scalars
 s_use_gdx   use of gdx files                                       / 2 /
