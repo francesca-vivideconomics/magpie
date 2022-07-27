@@ -17,7 +17,7 @@ sets
   / protect, restore /
 
   restoration_scens Restoration scenarios
-  / fps_nature /
+  / fps_nature, none /
   
   types_of_restoration Types of restoration
   / secdforest, other, past /
