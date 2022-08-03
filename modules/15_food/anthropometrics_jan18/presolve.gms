@@ -565,8 +565,17 @@ $else
 $endif
 
 $ifthen "%c15_exo_foodscen%" == "bespoke"
-  if((m_year(t) = 2010),
+  if((m_year(t) = 1995),
         i15_intake_EATLancet(i,kfo) =
+                f15_intake_EATLancet("y1995",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
+    Elseif((m_year(t) = 2000)),
+            i15_intake_EATLancet(i,kfo) =
+                f15_intake_EATLancet("y2000",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
+    Elseif((m_year(t) = 2005)),
+            i15_intake_EATLancet(i,kfo) =
+                f15_intake_EATLancet("y2005",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
+    Elseif((m_year(t) = 2010)),
+            i15_intake_EATLancet(i,kfo) =
                 f15_intake_EATLancet("y2010",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
     Elseif((m_year(t) = 2015)),
             i15_intake_EATLancet(i,kfo) =
