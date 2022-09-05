@@ -42,7 +42,7 @@ woodfuel . (wood_fuel)
 
 scen_73 Forestry future scenario
 /
-nopaper, construction
+nopaper, construction, construction_fixed
 /
 
 build_scen Building wood scenario
