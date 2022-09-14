@@ -518,8 +518,8 @@ if(s15_exo_waste = 1,
 * waste reduction target, i.e. only for values that are higher than the target:
 
 p15_demand2intake_ratio_scen(t,i)$(p15_demand2intake_ratio(t,i) > s15_waste_scen )
-                    = p15_demand2intake_ratio(t,i)*(1-i15_exo_foodscen_fader(t,i))
-                      + s15_waste_scen*i15_exo_foodscen_fader(t,i);
+                    = p15_demand2intake_ratio(t,i)*(1-i15_exo_wastescen_fader(t,i))
+                      + s15_waste_scen*i15_exo_wastescen_fader(t,i);
 
 p15_kcal_pc_calibrated_orig(t,i,kfo) = p15_kcal_pc_calibrated(t,i,kfo);
 p15_kcal_pc_calibrated(t,i,kfo)$(p15_demand2intake_ratio(t,i) >0 ) = p15_kcal_pc_calibrated_orig(t,i,kfo)*(
@@ -595,9 +595,6 @@ $ifthen "%c15_exo_foodscen%" == "bespoke"
     Elseif((m_year(t) > 2050)),
             i15_intake_EATLancet(i,kfo) =
                 f15_intake_EATLancet("y2050",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);    
-    else
-        i15_intake_EATLancet(i,kfo) =
-                f15_intake_EATLancet("y2050",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
     );
     i15_intake_scen_target(t,i) = sum(kfo,i15_intake_EATLancet(i,kfo));
 $else

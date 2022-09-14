@@ -66,8 +66,7 @@ sets
       fps_lower,
       fps_130,
       fps_170,
-      fps_base,
-      fps_half /
+      fps_base /
 
 ;
 *######################### R SECTION END (SETS) ################################
