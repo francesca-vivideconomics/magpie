@@ -592,8 +592,8 @@ $ifthen "%c15_exo_foodscen%" == "bespoke"
     Elseif((m_year(t) = 2050)),
             i15_intake_EATLancet(i,kfo) =
                 f15_intake_EATLancet("y2050",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);
-    Elseif((m_year(t) > 2050)),
-            i15_intake_EATLancet(i,kfo) =
+    else
+        i15_intake_EATLancet(i,kfo) =
                 f15_intake_EATLancet("y2050",i,"%c15_kcal_scen%","%c15_EAT_scen%",kfo);    
     );
     i15_intake_scen_target(t,i) = sum(kfo,i15_intake_EATLancet(i,kfo));
