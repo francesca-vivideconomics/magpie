@@ -605,30 +605,8 @@ $endif
 
 
 
-*' 2.) The second step defines the daily per capita intake of different food
-*' commodities by filling up the scenario target for total daily per capita food
-*' intake according to different scenario assumptions on dietary patterns. Calories
-*' for staple crops can be modified in order to meet the total calorie target.
 
-* Food-specific calorie intake of the model-internal diet projections is
-* estimated from daily per capita food calorie demand:
-p15_intake_detailed_regr(t,i,kfo) = p15_kcal_pc_calibrated(t,i,kfo)
-	 	/(f15_calib_fsupply(i)*f15_overcons_FAOwaste(i,kfo)*p15_foodwaste_growth(t,i));
-
-
-i15_intake_detailed_scen_target(t,i,EAT_nonstaples) = i15_intake_EATLancet(i,EAT_nonstaples);
-
-* The EAT-Lancet diet only allows for added sugars, but does not include processed food or
-* alcohol. Via 's15_alc_scen' a maximum target for alcohol consumption can be defined.
-if(s15_alc_scen>0,
-i15_intake_detailed_scen_target(t,i,"alcohol") = p15_intake_detailed_regr(t,i,"alcohol");
-i15_intake_detailed_scen_target(t,i,"alcohol")$(i15_intake_detailed_scen_target(t,i,"alcohol") > s15_alc_scen*i15_intake_scen_target(t,i))
-	= s15_alc_scen*i15_intake_scen_target(t,i);
-);
-
-i15_intake_detailed_scen_target(t,i,EAT_staples) = (
-          i15_intake_scen_target(t,i) - sum(EAT_nonstaples,i15_intake_EATLancet(i,EAT_nonstaples)) )*(
-          i15_intake_EATLancet(i,EAT_staples)/sum(EAT_staples2,i15_intake_EATLancet(i,EAT_staples2)) );
+i15_intake_detailed_scen_target(t,i,kfo) = i15_intake_EATLancet(i,kfo);
 
 
 *' 3.) The third step estimates the calorie supply at household level by multiplying
