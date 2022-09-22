@@ -63,10 +63,14 @@ sets
       SSPDB-SSP5-45-REMIND-MAGPIE,
       SSPDB-SSP5-60-REMIND-MAGPIE,
       SSPDB-SSP5-Ref-REMIND-MAGPIE,
-      fps_lower,
       fps_130,
       fps_170,
-      fps_base /
+      fps_base,
+      BAU,
+      2C_Orderly_Transition,
+      2C_Disorderly_Transition,
+      15C_Policy-Driven,
+      15C_Tech-Driven /
 
 ;
 *######################### R SECTION END (SETS) ################################
