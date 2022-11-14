@@ -5,7 +5,7 @@
 *** |  MAgPIE License Exception, version 1.0 (see LICENSE file).
 *** |  Contact: magpie@pik-potsdam.de
 
-$setglobal c22_protect_scenario  fps_nature
+$setglobal c22_protect_scenario  none
 $setglobal c22_protect_scenario_noselect  none
 $setglobal c22_restoration_scenario  fps_nature
 

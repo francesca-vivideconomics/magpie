@@ -31,13 +31,13 @@ $setglobal c15_livescen  constant
 $setglobal c15_rumdairyscen  constant
 $setglobal c15_rumdairy_scp_scen  constant
 $setglobal c15_livescen_target  constant
-$setglobal c15_exo_foodscen  bespoke
+$setglobal c15_exo_foodscen  lin_zero_20_50
 $setglobal c15_exo_wastescen  bespoke_waste
 
-$setglobal c15_kcal_scen  endogenous
+$setglobal c15_kcal_scen  healthy_BMI
 *   options:   healthy_BMI, 2100kcal, 2500kcal
 
-$setglobal c15_EAT_scen  nature_tech
+$setglobal c15_EAT_scen  FLX
 *   options:   BMK, FLX, PSC, VEG, VGN, FLX_hmilk, FLX_hredmeat
 
 
@@ -85,11 +85,11 @@ scalar s15_maxiter Scalar defining maximum number of iterations (1) / 5 /;
 scalar s15_convergence Convergence criterion (1) / 0.005 /;
 * maximum relative per-capita gdp difference within a region between two iteratios
 
-scalar s15_exo_waste Switch for transition towards exogenous food waste scenario (1)  / 1 /;
+scalar s15_exo_waste Switch for transition towards exogenous food waste scenario (1)  / 0 /;
 
 scalar s15_waste_scen Scenario target for the ratio between food demand and intake (1)  / 1.2 /;
 
-scalar s15_exo_diet Switch for transition towards exogenous diet scenario (1)  / 1 /;
+scalar s15_exo_diet Switch for transition towards exogenous diet scenario (1)  / 0 /;
 
 scalar s15_alc_scen Scenario target for the inclusion of alcohol in the EAT-Lancet diet (1)  / 0.014 /;
 
