@@ -146,29 +146,25 @@ $title magpie
 
 *##################### R SECTION START (VERSION INFO) ##########################
 * 
-* Used data set: WARNINGS47_rev4.73_694a3a5b_magpie.tgz
-* md5sum: 4354382eb94148bbf899af7fbe5da688
-* Repository: ./patch_inputdata
+* Used data set: rev4.77_h12_magpie.tgz
+* md5sum: NA
+* Repository: scp://cluster.pik-potsdam.de/p/projects/rd3mod/inputdata/output
 * 
-* Used data set: WARNINGS89_rev4.73_694a3a5b_fd712c0b_cellularmagpie_c200_MRI-ESM2-0-ssp370_lpjml-8e6c5eb1.tgz
-* md5sum: 567ba48b6e4a70f51aee8c9f73c48e29
-* Repository: ./patch_inputdata
+* Used data set: rev4.77_h12_fd712c0b_cellularmagpie_c200_MRI-ESM2-0-ssp370_lpjml-8e6c5eb1.tgz
+* md5sum: NA
+* Repository: scp://cluster.pik-potsdam.de/p/projects/rd3mod/inputdata/output
 * 
-* Used data set: WARNINGS106_rev4.73_694a3a5b_validation.tgz 
-* md5sum: b5addb628f4ee622739e67904b35bfe6
-* Repository: ./patch_inputdata
+* Used data set: rev4.77_h12_validation.tgz
+* md5sum: NA
+* Repository: scp://cluster.pik-potsdam.de/p/projects/rd3mod/inputdata/output
 * 
-* Used data set: calibration_IPR2022.tgz
-* md5sum: 7d31b353923fb09815f7ad58c8b9148c
-* Repository: ./patch_inputdata
+* Used data set: additional_data_rev4.30.tgz
+* md5sum: NA
+* Repository: scp://cluster.pik-potsdam.de/p/projects/landuse/data/input/archive
 * 
-* Used data set: additional_data_rev4.26.tgz
-* md5sum: f3c348b7428faae898b7e10ec9a89e41
+* Used data set: calibration_H12_per_ton_fao_may22_28May22.tgz
+* md5sum: NA
 * Repository: https://rse.pik-potsdam.de/data/magpie/public
-* 
-* Used data set: patch_IPR2022_fpsnature_220726.tgz
-* md5sum: 35ad6d0c640809d612990e9653d0e0e0
-* Repository: ./patch_inputdata
 * 
 * Low resolution: c200
 * High resolution: 0.5
@@ -176,32 +172,28 @@ $title magpie
 * Total number of cells: 200
 * 
 * Number of cells per region:
-*   ANZ  BRA  CAN  CHA  DEA  EUR  IND  MEA  NEU  REF  RUS  SAF  SAS  SCO  SEA  TAF  TLA  USA
-*     3    9    4   22    1    7    6   26    7   10    5   11    7    8    5   25   26   18
+*   CAZ  CHA  EUR  IND  JPN  LAM  MEA  NEU  OAS  REF  SSA  USA
+*     6   23    7    6    1   43   27    7   11   12   37   20
 * 
-* Regionscode: 694a3a5b
+* Regionscode: 62eff8f7
 * 
-* Regions data revision: 4.73
+* Regions data revision: 4.77
 * 
 * lpj2magpie settings:
 * * LPJmL data: MRI-ESM2-0:ssp370
-* * Revision: 4.73
+* * Revision: 4.77
 * 
 * aggregation settings:
 * * Input resolution: 0.5
 * * Output resolution: c200
-* * Regionscode: 694a3a5b
+* * Regionscode: 62eff8f7
+* * Number of clusters per region:
+*   CAZ  CHA  EUR  IND  JPN  LAM  MEA  NEU  OAS  REF  SSA  USA
+*     6   23    7    6    1   43   27    7   11   12   37   20
 * * Call: withCallingHandlers(expr, message = messageHandler, warning = warningHandler,     error = errorHandler)
 * 
-* Warning messages:
-* 1: In gms::update_modules_embedding() :
-*   ./modules/38_factor_costs/mixed_feb17/realization.gms not found, this realization cannot be used!
-* 2: In untar2(tarfile, files, list, exdir, restore_times) :
-*   using pax extended headers
-* 3: In load("input/spatial_header.rda") :
-*   strings not representable in native encoding will be translated to UTF-8
 * 
-* Last modification (input data): Wed Sep 14 22:59:33 2022
+* Last modification (input data): Fri Sep 23 12:55:58 2022
 * 
 *###################### R SECTION END (VERSION INFO) ###########################
 
@@ -225,9 +217,9 @@ $offlisting
 **************************MODEL SPECIFIC SCALARS********************************
 *                    Key parameters during model runs
 
-$setglobal c_timesteps  5year2050
+$setglobal c_timesteps  coup2100
 $setglobal c_past  till_2010
-$setglobal c_title  fps_nature
+$setglobal c_title  default
 
 scalars
 s_use_gdx   use of gdx files                                       / 2 /
@@ -275,14 +267,14 @@ $setglobal water_availability  total_water_aug13
 $setglobal biodiversity  bii_target
 $setglobal climate  static
 
-$setglobal nr_soil_budget  exoeff_aug16
-$setglobal nitrogen  ipcc2006_sep16
+$setglobal nr_soil_budget  macceff_aug22
+$setglobal nitrogen  rescaled_jan21
 $setglobal carbon  normal_dec17
-$setglobal methane  ipcc2006_flexreg_apr16
+$setglobal methane  ipcc2006_aug22
 $setglobal phosphorus  off
 $setglobal awms  ipcc2006_aug16
-$setglobal ghg_policy  price_jan20
-$setglobal maccs  on_sep16
+$setglobal ghg_policy  price_aug22
+$setglobal maccs  on_aug22
 $setglobal peatland  on
 $setglobal som  static_jan19
 
