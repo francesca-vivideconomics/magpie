@@ -146,24 +146,20 @@ $title magpie
 
 *##################### R SECTION START (VERSION INFO) ##########################
 * 
-* Used data set: rev4.77_h12_magpie.tgz
-* md5sum: f0fb0888f1f711442377a380887dbbfa
-* Repository: https://rse.pik-potsdam.de/data/magpie/public
+* Used data set: rev4.77_694a3a5b_magpie.tgz
+* md5sum: cf82c7a11e3e538533b65e8c1e0227c2
+* Repository: ./patch_inputdata
 * 
-* Used data set: rev4.77_h12_fd712c0b_cellularmagpie_c200_MRI-ESM2-0-ssp370_lpjml-8e6c5eb1.tgz
-* md5sum: fe9ad2782602695b706836e84f6b569f
-* Repository: https://rse.pik-potsdam.de/data/magpie/public
+* Used data set: rev4.77_694a3a5b_fd712c0b_cellularmagpie_c200_MRI-ESM2-0-ssp370_lpjml-8e6c5eb1.tgz
+* md5sum: c3535dc1c250d33d1a3470bb00bade5e
+* Repository: ./patch_inputdata
 * 
-* Used data set: rev4.77_h12_validation.tgz
-* md5sum: 7bb2104776a43e1f1293f50d08e20877
-* Repository: https://rse.pik-potsdam.de/data/magpie/public
+* Used data set: rev4.77_694a3a5b_validation.tgz
+* md5sum: d3dff072992bca2091b059ffee6edf18
+* Repository: ./patch_inputdata
 * 
 * Used data set: additional_data_rev4.32.tgz
 * md5sum: 721ffbc57edddfb5e9b76546c51906f2
-* Repository: https://rse.pik-potsdam.de/data/magpie/public
-* 
-* Used data set: calibration_H12+ir2rf_05Oct22.tgz
-* md5sum: 788b8e32ea1bd83c5c8f8987d9f05265
 * Repository: https://rse.pik-potsdam.de/data/magpie/public
 * 
 * Low resolution: c200
@@ -172,10 +168,10 @@ $title magpie
 * Total number of cells: 200
 * 
 * Number of cells per region:
-*   CAZ  CHA  EUR  IND  JPN  LAM  MEA  NEU  OAS  REF  SSA  USA
-*     6   23    7    6    1   43   27    7   11   12   37   20
+*   ANZ  BRA  CAN  CHA  DEA  EUR  IND  MEA  NEU  REF  RUS  SAF  SAS  SCO  SEA  TAF  TLA  USA
+*     3    9    4   22    1    7    6   26    7   10    5   11    7    8    5   25   26   18
 * 
-* Regionscode: 62eff8f7
+* Regionscode: 694a3a5b
 * 
 * Regions data revision: 4.77
 * 
@@ -186,10 +182,10 @@ $title magpie
 * aggregation settings:
 * * Input resolution: 0.5
 * * Output resolution: c200
-* * Regionscode: 62eff8f7
+* * Regionscode: 694a3a5b
 * * Number of clusters per region:
-*   CAZ  CHA  EUR  IND  JPN  LAM  MEA  NEU  OAS  REF  SSA  USA
-*     6   23    7    6    1   43   27    7   11   12   37   20
+*   ANZ  BRA  CAN  CHA  DEA  EUR  IND  MEA  NEU  REF  RUS  SAF  SAS  SCO  SEA  TAF  TLA  USA
+*     3    9    4   22    1    7    6   26    7   10    5   11    7    8    5   25   26   18
 * * Call: withCallingHandlers(expr, message = messageHandler, warning = warningHandler,     error = errorHandler)
 * 
 * Warning messages:
@@ -201,10 +197,12 @@ $title magpie
 *   ./modules/56_ghg_policy/price_jan20/realization.gms not found, this realization cannot be used!
 * 4: In untar2(tarfile, files, list, exdir, restore_times) :
 *   using pax extended headers
-* 5: In untar2(tarfile, files, list, exdir, restore_times) :
-*   using pax extended headers
+* 5: In copy_input(x = file2destination, sourcepath = "input",  ... :
+*   File f39_calib.csv seems to be missing!
+* 6: In file.copy("fulldata.gdx", putfolder) :
+*   problem copying .\fulldata.gdx to calib_run\fulldata.gdx: No such file or directory
 * 
-* Last modification (input data): Mon Nov 14 12:19:04 2022
+* Last modification (input data): Thu Nov 17 11:47:07 2022
 * 
 *###################### R SECTION END (VERSION INFO) ###########################
 
@@ -230,7 +228,7 @@ $offlisting
 
 $setglobal c_timesteps  coup2100
 $setglobal c_past  till_2010
-$setglobal c_title  default
+$setglobal c_title  new_run
 
 scalars
 s_use_gdx   use of gdx files                                       / 2 /
