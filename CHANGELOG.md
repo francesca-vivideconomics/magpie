@@ -6,19 +6,113 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## Unreleased
+## [4.6.4] - 2023-02-22
 
 ### changed
--
+- **15_food** Interpret EAT-Lancet guidelines not as target but as lower/upper limits
+- **config** changed order of output scripts. Some functions in rds_report require gridded outputs.
+- **config** input data revision to rev4.81 for trade margin bugfix
+- **config** scenario_fsec.csv updated input data tgz
+- **config** scenario_fsec.csv updated to new biodiversity scenario
+- **scripts** fsec.R and project_FSEC_Scenarios.R include capitalSubst and landscapeElements scenarios
+- **scripts** highres.R changed default resolution to c1000
+- **scripts** recalibrate.R and recalibrate_realization were modified to always use best_calib for the yield calibration.
+- **scripts** updated FSEC scenario start and output scripts
+- **scripts** when manually running output scripts for multiple runs the lockfile is only created once
+- **sticky_labor** changed labor cost share constraint from regional to cellular level
+- **sticky_labor** renamed equation `q38_labor_capital_ratio` to `q38_labor_share_target`
 
 ### added
--
+- **15_food** half_overweight scenario added
+- **21_trade** New Bilateral trade realization selfsuff_reduced_bilat22 for bilateral trade within selffsuff constraints
+- **32_forestry** added switch `s32_aff_prot` for protection of afforested areas (0=until end of planning horizon 1=forever)
+- **56_ghg_policy** added two scenarios for GHG emission pricing and options for afforestation
+- **config** added options for afforestation assumptions and updated additional data to 4.38
+- **config** added setting cfg$keep_restarts which controls whether restart files should be kept after a run finished
+- **config** changed default for `s_use_gdx` from 2 to 0
+- **scripts** added restart points after each time step from which the model can now be restarted if the simulation aborts at some point
+- **scripts** added SLURM dayMax submission type for standby QOS
+- **sticky_labor** `nl_fix`, `nl_relax` and `nl_release` added
 
 ### removed
--
+- **42_water_demand** removed fm_multicropping factor because of fallow inconsistency
 
 ### fixed
--
+- **14_yields** nl_fix updated to current equation
+- **32_forestry** pm_land_conservation(t,j,"secdforest","restore") now accounts for the rotation length in timber plantations to avoid infeasibilities
+- **44_biodiversity** added regional layer `i` in `bii_target` realisation to make it compatible with the high-resolution parallel optimization output script
+- **59_som** division by zero prevented by if condition
+- **scripts** fixed a bug where renvs for high resolution runs were missing some packages
+- **scripts** fixed in the calc_calib.R script the saving of calib_factors used in each iteration to ensure that they correspond to the divergence reported. Changed divergence from zero to NA for those iterations where calib_factors are above the limit. The best_calib selection criterion was changed from selecting the factors of the iteration with the lowest standard deviation to the selection, for each region, of the factor of the iteration with the lowest divergence. Also, factors from the first iteration are now not considered, and if two different factors had the same divergence for a region, the one of the latest iteration is picked.
+
+
+## [4.6.3] - 2023-01-19
+
+### changed
+- **15_food** changed `anthro_iso_jun22` realisation such that results in case of `exo_diet = 1/0` and `exo_waste = 1/0` are identical until 2020
+- **30_crop** identical assumptions for bioenergy until 2020
+- **38_factor_costs** changed name of set `req` to `factors` (also used in 11_costs, 57_maccs, 70_livestock)
+- **38_factos_costs** sticky_labor realization: included option to set a labor share target
+- **62_material** Bioplastic demand identical in all scenarios until 2020
+- **config** added `s38_target_labor_share`, `s38_targetyear_labor_share` and `s38_target_fulfillment` to define labor share target scnarios
+- **config** and **38_factor_costs** changed name of `s38_fix_capital_need` to `s38_startyear_labor_substitution`
+- **config** update input data to rev4.79
+
+### added
+- **31_past** added additional limitation (single climate scenario input) for **grasslands_apr22**
+- **59_som** added new **cellpool_jan23** realization with updated 2019 IPCC guidelines values
+- **scripts** added start script which starts an empty model just regenerating a previous run
+
+### fixed
+- **scripts** make sure that `c_title` in the GAMS code is not containing dots which otherwise could lead to compilation errors
+
+
+## [4.6.2] - 2023-01-12
+
+### changed
+- **36_employment** include labor costs from MACCs in employment
+- **38_factor_cots** renamed `p36_cost_shares` to `pm_cost_share_crops`
+- **57_maccs** split costs into labor and capital
+- **config** scenario_fsec.csv update
+- **config** updated SHAPE SDP scenarios in scenario_config.csv
+- **scripts** FSDP_collect FSDP_process fsec.R updates
+
+### added
+- **renv** MAgPIE now runs in an isolated, stable, reproducible R package environment
+- **scripts** added output script that generates a short mif containing only variables relevant for the REMIND coupling
+- **scripts** added output script that generates subnational validation outputs for fable_India projects
+- **setup** required R packages are automatically installed
+
+
+## [4.6.1] - 2022-12-13
+
+### changed
+- **42_water_demand** replaced `f42_env_flow_policy` with macro
+- **30_crop** replaced `f30_scenario_fader` with macro
+- **30_crop/config** changed switch `c30_rotation_scenario_speed` to `s30_rotation_scenario_target`
+- **30_crop/config** changed switch `c30_snv_target` to `s30_snv_scenario_target`
+- **config** changed default value for `c30_marginal_land` from `'all_marginal'` to `'q33_marginal'` for better spatial cropland patterns
+
+### added
+- **10_land** added `vm_lu_transitions` as interface
+- **10_land** added interface `fm_land_iso` for consistency
+- **30_crop/config** added switch `s30_rotation_scenario_start`
+- **30_crop/config** added switch `s30_snv_scenario_start`
+- **30_crop/config** added switch for set `land_snv`for defining which land cover types are allowed in the semi-natural vegetation policy in cropland scenarios
+- **39_landconversion** scalar `s39_reward_crop_reduction` provides a cropland reduction reward
+
+### removed
+- **10_land** removed `feb15` realization
+- **10_land** removed the interfaces `vm_croplandexpansion` and `vm_croplandreduction`
+- **30_crop** removed `f30_scenario_fader.csv`input
+- **39_landconversion** removed `s39_reward_shr`
+- **config** validation_short.R output script is no longer run by default after each run
+- **scripts** removed remind2::deletePlus in coupling interface of start_function
+
+### fixed
+- **59_som** fixed land use change tracking for non-cropland pools in the `cellpool_aug16` realization
+- **config** changed default value for s56_limit_ch4_n2o_price from 1000 to 4000 for consistency with c57_macc_version = "PBL_2022"
+- **scripts** rewrite of land conversion cost calibration script `landconversion_cost.R`
 
 
 ## [4.6.0] - 2022-11-09
@@ -189,6 +283,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **scripts** fixed configuration error in FSEC output scripts, FSEC_dietaryIndicators.R and FSEC_environmentalPollutants.R
 - **scripts** scripts/start/extra/emulator.R  Throw an error if no file can be found to take the GHG prices from
 
+
 ## [4.4.0] - 2021-12-13
 
 ### changed
@@ -279,6 +374,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **73_timber** plausible cost for balance variable in case of s73_timber_demand_switch = 0 to avoid cost distortion
 - **56_ghg_policy** choose the correct scenario for fixing the GHG prices until sm_fix_SSP2
 
+
 ## [4.3.5] - 2021-09-02
 
 ### changed
@@ -347,6 +443,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - - **15_food** single-cell protein substitution scenarios included in intersolve.gms.
 - **20_processing** The "mixed" scenario for single-cell protein production (c20_scp_type) was not working as expected. The corresponding code in 20_processing has been updated.
 
+
 ## [4.3.3] - 2021-03-30
 
 ### added
@@ -406,6 +503,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **32_forestry** Bugfixes for "ac_est" and carbon treshold afforestation; removed plantations from "vm_cdr_aff".
 - **core** bugfix m_fillmissingyears macro; was running over t before; now running over t_all_
 
+
 ## [4.3.1] - 2020-11-03
 
 ### added
@@ -444,6 +542,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - **35_natveg** Clearer calculations for harvested area for timber production.
  - **52_carbon** Fix to the Carbon densities received from LPJmL for timber plantations.
 
+
 ## [4.2.1] - 2020-05-15
 
 ### added
@@ -459,7 +558,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### fixed
  - **56_ghg_policy and 60_bioenergy** update of GHG prices and 2nd generation bioenergy demand from SSPDB to most recent snapshot
  - **NPI/NDC policy calculations** revision of calculation method
-
 
 
 ## [4.2.0] - 2020-04-15
@@ -542,6 +640,7 @@ This release version is focussed on consistency between the MAgPIE setup and the
  - **71_diagg_lvst** adjusted monogastric disaggregation for more flexiblity to avoid infeasibilities with EFPs (see 42_water_demand)
  - **15_food** correction regarding the convergence measure of the iterative execution of the food demand model and MAgPIE; correction accounting for unusual time step length in body height calculations; body height regression parameters updated
 
+
 ## [4.0.1] - 2018-10-05
 
 ### fixed
@@ -553,7 +652,11 @@ This release version is focussed on consistency between the MAgPIE setup and the
 First open source release of the framework. See [MAgPIE 4.0 paper](https://doi.org/10.5194/gmd-12-1299-2019) for more information.
 
 
-[Unreleased]: https://github.com/magpiemodel/magpie/compare/v4.6.0...develop
+[Unreleased]: https://github.com/magpiemodel/magpie/compare/v4.6.4...develop
+[4.6.4]: https://github.com/magpiemodel/magpie/compare/v4.6.3...v4.6.4
+[4.6.3]: https://github.com/magpiemodel/magpie/compare/v4.6.2...v4.6.3
+[4.6.2]: https://github.com/magpiemodel/magpie/compare/v4.6.1...v4.6.2
+[4.6.1]: https://github.com/magpiemodel/magpie/compare/v4.6.0...v4.6.1
 [4.6.0]: https://github.com/magpiemodel/magpie/compare/v4.5.0...v4.6.0
 [4.5.0]: https://github.com/magpiemodel/magpie/compare/v4.4.0...v4.5.0
 [4.4.0]: https://github.com/magpiemodel/magpie/compare/v4.3.5...v4.4.0
