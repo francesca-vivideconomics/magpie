@@ -76,19 +76,24 @@ sets
       SSPDB-SSP5-34-REMIND-MAGPIE,
       SSPDB-SSP5-45-REMIND-MAGPIE,
       SSPDB-SSP5-60-REMIND-MAGPIE,
-      SSPDB-SSP5-Ref-REMIND-MAGPIE /
+      SSPDB-SSP5-Ref-REMIND-MAGPIE,
+      fps_developed,
+      fps_developing,
+      BAU,
+      2C_Orderly_Transition,
+      2C_Disorderly_Transition,
+      15C_Policy-Driven,
+      15C_Tech-Driven /
 
   scen56 emission policy scenarios
     / none,
       all,
       all_nosoil,
       redd_nosoil,
-      reddnatveg_nosoil,
       redd+_nosoil,
       redd+natveg_nosoil,
       all_vegc,
       redd_vegc,
-      reddnatveg_vegc,
       redd+_vegc,
       redd+natveg_vegc,
       sdp_cropeff,
@@ -106,8 +111,7 @@ sets
       ecoSysProtPrimForest,
       ecoSysProtOff,
       ecoSysProtAll_agMgmtExclN2O,
-      ecoSysProtAll_agMgmtExclCH4,
-      ecoSysProtAll_agMgmtOff /
+      ecoSysProtAll_agMgmtExclCH4 /
 
 ;
 *######################### R SECTION END (SETS) ################################

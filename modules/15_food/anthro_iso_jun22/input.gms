@@ -31,14 +31,14 @@ $setglobal c15_livescen  constant
 $setglobal c15_rumdairyscen  constant
 $setglobal c15_rumdairy_scp_scen  constant
 $setglobal c15_livescen_target  constant
-$setglobal c15_exo_foodscen  lin_zero_20_50
+$setglobal c15_exo_foodscen  bespoke
 
-$setglobal c15_kcal_scen  healthy_BMI
+$setglobal c15_kcal_scen  endogenous
 *   options:    healthy_BMI, 2100kcal, 2500kcal,
 *              endo, no_underweight, no_overweight
 *              half_overweight, no_underweight_half_overweight
 
-$setglobal c15_EAT_scen  FLX
+$setglobal c15_EAT_scen  nature_tech
 *   options:   BMK, FLX, PSC, VEG, VGN, FLX_hmilk, FLX_hredmeat
 
 
@@ -86,11 +86,11 @@ scalar s15_maxiter Scalar defining maximum number of iterations (1) / 5 /;
 scalar s15_convergence Convergence criterion (1) / 0.005 /;
 * maximum relative per-capita gdp difference within a region between two iteratios
 
-scalar s15_exo_waste Switch for transition towards exogenous food waste scenario (1)  / 0 /;
+scalar s15_exo_waste Switch for transition towards exogenous food waste scenario (1)  / 1 /;
 
 scalar s15_waste_scen Scenario target for the ratio between food demand and intake (1)  / 1.2 /;
 
-scalar s15_exo_diet Switch for transition towards exogenous diet scenario (1)  / 0 /;
+scalar s15_exo_diet Switch for transition towards exogenous diet scenario (1)  / 1 /;
 * The following switches only become active when s15_exo_diet is active
 * They define which components of the diet should become active
 * If the switch is set to 1,the exogenous diets are activated.

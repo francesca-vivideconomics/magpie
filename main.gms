@@ -148,25 +148,29 @@ $title magpie
 
 *##################### R SECTION START (VERSION INFO) ##########################
 * 
-* Used data set: rev4.81_h12_magpie.tgz
-* md5sum: 89bfe8e5c74dd8ba72c023a785d01989
-* Repository: /p/projects/rd3mod/inputdata/output
+* Used data set: rev4.84_694a3a5b_magpie.tgz
+* md5sum: 5f64cdef99e7ec2b4131cb0f198fbf03
+* Repository: ./patch_inputdata
 * 
-* Used data set: rev4.81_h12_fd712c0b_cellularmagpie_c200_MRI-ESM2-0-ssp370_lpjml-8e6c5eb1.tgz
-* md5sum: 93fa9d97ad83b0bcc4e9ec8e9b741566
-* Repository: /p/projects/rd3mod/inputdata/output
+* Used data set: rev4.84_694a3a5b_fd712c0b_cellularmagpie_c200_MRI-ESM2-0-ssp370_lpjml-8e6c5eb1.tgz
+* md5sum: 96ce99abd3c05b532798660065a88a8a
+* Repository: ./patch_inputdata
 * 
-* Used data set: rev4.81_h12_validation.tgz
-* md5sum: 07eb91a745b1a176ac35cf0d6536d68a
-* Repository: /p/projects/rd3mod/inputdata/output
+* Used data set: rev4.87_694a3a5b_validation.tgz
+* md5sum: 32d786ce7ffc33e9cfaba2fa811e084b
+* Repository: ./patch_inputdata
 * 
-* Used data set: additional_data_rev4.36.tgz
-* md5sum: e24c46872f77dc15ad8603bdac1e6065
-* Repository: /p/projects/rd3mod/mirror/rse.pik-potsdam.de/data/magpie/public
+* Used data set: additional_data_rev4.32.tgz
+* md5sum: 721ffbc57edddfb5e9b76546c51906f2
+* Repository: https://rse.pik-potsdam.de/data/magpie/public
 * 
-* Used data set: calibration_H12_per_ton_fao_may22_glo_13Feb23.tgz
-* md5sum: e771e9b6f2202124db3f3bc296596b17
-* Repository: /p/projects/landuse/data/input/calibration
+* Used data set: calibration_ipr_v4.6.0.tgz
+* md5sum: 603b8b7ce0ab13aa0bb924b2b4894695
+* Repository: ./patch_inputdata
+* 
+* Used data set: ipr2023.tgz
+* md5sum: 39aadbb7e0623571afd6b911b21830c2
+* Repository: ./patch_inputdata
 * 
 * Low resolution: c200
 * High resolution: 0.5
@@ -174,24 +178,24 @@ $title magpie
 * Total number of cells: 200
 * 
 * Number of cells per region:
-*   CAZ  CHA  EUR  IND  JPN  LAM  MEA  NEU  OAS  REF  SSA  USA
-*     6   23    7    6    1   43   27    7   11   12   37   20
+*   ANZ  BRA  CAN  CHA  DEA  EUR  IND  MEA  NEU  REF  RUS  SAF  SAS  SCO  SEA  TAF  TLA  USA
+*     3    9    4   22    1    7    6   26    7   10    5   11    7    8    5   25   26   18
 * 
-* Regionscode: 62eff8f7
+* Regionscode: 694a3a5b
 * 
-* Regions data revision: 4.81
+* Regions data revision: 4.84
 * 
 * lpj2magpie settings:
 * * LPJmL data: MRI-ESM2-0:ssp370
-* * Revision: 4.81
+* * Revision: 4.84
 * 
 * aggregation settings:
 * * Input resolution: 0.5
 * * Output resolution: c200
-* * Regionscode: 62eff8f7
+* * Regionscode: 694a3a5b
 * * Number of clusters per region:
-*   CAZ  CHA  EUR  IND  JPN  LAM  MEA  NEU  OAS  REF  SSA  USA
-*     6   23    7    6    1   43   27    7   11   12   37   20
+*   ANZ  BRA  CAN  CHA  DEA  EUR  IND  MEA  NEU  REF  RUS  SAF  SAS  SCO  SEA  TAF  TLA  USA
+*     3    9    4   22    1    7    6   26    7   10    5   11    7    8    5   25   26   18
 * * Call: withCallingHandlers(expr, message = messageHandler, warning = warningHandler,     error = errorHandler)
 * 
 * Warning messages:
@@ -199,8 +203,10 @@ $title magpie
 *   ./modules/38_factor_costs/mixed_reg_feb17/realization.gms not found, this realization cannot be used!
 * 2: In gms::update_modules_embedding() :
 *   ./modules/51_nitrogen/ipcc2006_sep16/realization.gms not found, this realization cannot be used!
+* 3: In gms::update_modules_embedding() :
+*   ./modules/56_ghg_policy/price_jan20/realization.gms not found, this realization cannot be used!
 * 
-* Last modification (input data): Wed Feb 15 19:04:47 2023
+* Last modification (input data): Fri May 19 17:26:42 2023
 * 
 *###################### R SECTION END (VERSION INFO) ###########################
 
@@ -224,9 +230,9 @@ $offlisting
 **************************MODEL SPECIFIC SCALARS********************************
 *                    Key parameters during model runs
 
-$setglobal c_timesteps  calib
+$setglobal c_timesteps  coup2100
 $setglobal c_past  till_2010
-$setglobal c_title  BilatPRFade_ON_Nofadeout
+$setglobal c_title  FPS_new
 
 scalars
 s_use_gdx   use of gdx files                                       / 0 /
@@ -242,7 +248,7 @@ $setglobal interest_rate  select_apr20
 $setglobal tc  endo_jan22
 $setglobal yields  managementcalib_aug19
 
-$setglobal food  anthro_iso_jun22
+$setglobal food  anthropometrics_jan18
 $setglobal demand  sector_may15
 $setglobal production  flexreg_apr16
 
@@ -254,7 +260,7 @@ $setglobal land_conservation  area_based_apr22
 
 $setglobal ageclass  feb21
 
-$setglobal crop  penalty_apr22
+$setglobal crop  endo_apr21
 $setglobal past  endo_jun13
 
 $setglobal forestry  dynamic_feb21
@@ -264,7 +270,7 @@ $setglobal natveg  dynamic_feb21
 
 $setglobal employment  exo_may22
 $setglobal labor_prod  off
-$setglobal factor_costs  sticky_feb18
+$setglobal factor_costs  per_ton_fao_may22
 $setglobal landconversion  calib
 
 $setglobal transport  gtap_nov12
