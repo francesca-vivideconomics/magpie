@@ -25,6 +25,8 @@ if(!exists("source_include")) {
   readArgs("outputdir")
 }
 
+outputdir <- "~/Land Use analysis/magpie/output/FPS_new_NDC_2023-06-19_13.51.58"
+
 cfg <- gms::loadConfig(file.path(outputdir, "config.yml"))
 gdx <- file.path(outputdir, "fulldata.gdx")
 rds <- paste0(outputdir, "/report.rds")
