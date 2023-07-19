@@ -10,8 +10,12 @@ parameters
  p56_pollutant_prices_input(t_all,i,pollutants,emis_source)   Certificate prices for N2O-N CH4 CO2-C from input files (USD05MER per Mg)
  p56_c_price_aff(t_all,i,ac)                      C price used for afforestation decision-making (USD05MER per tC)
  pc56_c_price_induced_aff                         Helper for fixing C price driven afforestation to zero for historic time steps (binary)
- p56_region_price_shr(t_all,i)                    GHG price share of the region (1)
- p56_country_dummy(iso)                           Dummy parameter indicating whether country is affected by selected GHG policy (1)
+* p56_region_price_shr(t_all,i)                    GHG price share of the region (1)
+ p56_region_price_shr_1(t_all,i)                    GHG price share of the region tier 1 (1)
+ p56_region_price_shr_2(t_all,i)                    GHG price share of the region tier 2 (1)
+* p56_country_dummy(iso)                           Dummy parameter indicating whether country is affected by selected GHG policy (1)
+ p56_country_dummy_1(iso)                           Dummy parameter indicating whether country is affected by selected GHG policy tier 1 (1)
+ p56_country_dummy_2(iso)                           Dummy parameter indicating whether country is affected by selected GHG policy tier 2 (1)
 ;
 
 equations

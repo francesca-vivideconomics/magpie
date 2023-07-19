@@ -14,12 +14,22 @@ v56_emis_pricing.fx(i,emis_oneoff,pollutants)$(not sameas(pollutants,"co2_c")) =
 ****** Region price share for ghg policy of selective countries:
 * Country switch to determine countries for which ghg policy shall be applied.
 * In the default case, the ghg policy affects all countries when activated.
-p56_country_dummy(iso) = 0;
-p56_country_dummy(policy_countries56) = 1;
+* p56_country_dummy(iso) = 0;
+* p56_country_dummy(policy_countries56) = 1;
+
+p56_country_dummy_1(iso) = 0;
+p56_country_dummy_1(policy_countries56) = 1;
+
+p56_country_dummy_2(iso) = 0;
+p56_country_dummy_2(policy_countries_t2_56) = 1;
+
 * Because MAgPIE is not run at country-level, but at region level, a region
 * share is calculated that translates the countries' influence to regional level.
 * Countries are weighted by their population size.
-p56_region_price_shr(t_all,i) = sum(i_to_iso(i,iso), p56_country_dummy(iso) * im_pop_iso(t_all,iso)) / sum(i_to_iso(i,iso), im_pop_iso(t_all,iso));
+* p56_region_price_shr(t_all,i) = sum(i_to_iso(i,iso), p56_country_dummy(iso) * im_pop_iso(t_all,iso)) / sum(i_to_iso(i,iso), im_pop_iso(t_all,iso));
+p56_region_price_shr_1(t_all,i) = sum(i_to_iso(i,iso), p56_country_dummy_1(iso) * im_pop_iso(t_all,iso)) / sum(i_to_iso(i,iso), im_pop_iso(t_all,iso));
+p56_region_price_shr_2(t_all,i) = sum(i_to_iso(i,iso), p56_country_dummy_2(iso) * im_pop_iso(t_all,iso)) / sum(i_to_iso(i,iso), im_pop_iso(t_all,iso));
+
 
 ****select ghg prices
 $ifthen "%c56_pollutant_prices%" == "coupling"
@@ -27,8 +37,9 @@ $ifthen "%c56_pollutant_prices%" == "coupling"
 $elseif "%c56_pollutant_prices%" == "emulator"
  im_pollutant_prices(t_all,i,pollutants,emis_source) = f56_pollutant_prices_emulator(t_all,i,pollutants);
 $else
- im_pollutant_prices(t_all,i,pollutants,emis_source) = f56_pollutant_prices(t_all,i,pollutants,"%c56_pollutant_prices%") * p56_region_price_shr(t_all,i)
-                                         + f56_pollutant_prices(t_all,i,pollutants,"%c56_pollutant_prices_noselect%") * (1-p56_region_price_shr(t_all,i));
+ im_pollutant_prices(t_all,i,pollutants,emis_source) = f56_pollutant_prices(t_all,i,pollutants,"%c56_pollutant_prices_tier1%") * p56_region_price_shr_1(t_all,i)
+                                         + f56_pollutant_prices(t_all,i,pollutants,"%c56_pollutant_prices_tier2%") * (p56_region_price_shr_2(t_all,i))
+                                         + f56_pollutant_prices(t_all,i,pollutants,"%c56_pollutant_prices_tier3%") * (1-(p56_region_price_shr_1(t_all,i)+p56_region_price_shr_2(t_all,i)));
 $endif
 
 ***save im_pollutant_prices to parameter

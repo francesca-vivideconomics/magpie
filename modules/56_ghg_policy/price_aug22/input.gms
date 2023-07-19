@@ -8,7 +8,7 @@
 * Set-switch for countries affected by regional ghg policy
 * Default: all iso countries selected
 sets
-  policy_countries56(iso) countries to be affected by ghg policy / ALA,AUS,AUT,BEL,BGR,CAN,CHN,CYP,EST,ESP,GBR,
+  policy_countries56(iso) countries to be affected by tier 1 ghg policy / ALA,AUS,AUT,BEL,BGR,CAN,CHN,CYP,EST,ESP,GBR,
                                FRA,FRO,GGY,HUN,GIB,GRC,HRV,IMN,
                                IRL,JEY,LTU,MLT,NLD,POL,PRT,ROU,
                                AND,ISL,LIE,MCO,SJM,SMR,VAT,ALB,
@@ -16,6 +16,9 @@ sets
                                CZE,DEU,DNK,ITA,LUX,LVA,SVK,SVN,
                                SWE,SWZ,JPN,KOR,FIN,NOR,USA,NZL,
                                PRK,SPM /
+
+
+  policy_countries_t2_56(iso) countries to be affected by tier 2 ghg policy / AUS,BRA,CHN,KOR,USA,VNM /
 ;
 
 scalars
@@ -31,11 +34,16 @@ scalars
   s56_offset helper for C price interpolation (1) / 0 /
 ;
 
-$setglobal c56_pollutant_prices  fps_developed
-$setglobal c56_pollutant_prices_noselect  fps_developing
+* FV added tiers to carbon pricing
+* $setglobal c56_pollutant_prices  R21M42-SSP2-NPi
+* $setglobal c56_pollutant_prices_noselect  R21M42-SSP2-NPi
+
+$setglobal c56_pollutant_prices_tier1  fps_developed
+$setglobal c56_pollutant_prices_tier2  fps_developing
+$setglobal c56_pollutant_prices_tier3  fps_developing
 $setglobal c56_emis_policy  redd+natveg_nosoil
 $setglobal c56_cprice_aff  forestry_vegc
-$setglobal c56_mute_ghgprices_until  y2030
+$setglobal c56_mute_ghgprices_until  y2025
 
 $setglobal c56_carbon_stock_pricing  actualNoAcEst
 *   options:  actual, actualNoAcEst

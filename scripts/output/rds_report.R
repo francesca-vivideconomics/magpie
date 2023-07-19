@@ -6,7 +6,10 @@
 # |  Contact: magpie@pik-potsdam.de
 
 # --------------------------------------------------------------
-# description: extract report in rds and mif format from run
+# description: extract report in rds and mif format from run. N.B.
+#              Francesca edited lines 37-59 to include BII reporting
+#              and ensure printing of all report funcitons requiring
+#              "detail" and "dir" to be specified 
 # comparison script: FALSE
 # position: 2
 # ---------------------------------------------------------------
@@ -25,7 +28,7 @@ if(!exists("source_include")) {
   readArgs("outputdir")
 }
 
-outputdir <- "~/Land Use analysis/magpie/output/FPS_new_NDC_2023-06-19_13.51.58"
+outputdir <- "~/Land Use analysis/magpie/output/FPS_new_NDC_SSP2_NUE_pastedNDC_pa3050_2023-07-17_16.05.16"
 
 cfg <- gms::loadConfig(file.path(outputdir, "config.yml"))
 gdx <- file.path(outputdir, "fulldata.gdx")
@@ -35,13 +38,33 @@ runstatistics  <- paste0(outputdir, "/runstatistics.rda")
 resultsarchive <- "/p/projects/rd3mod/models/results/magpie"
 ###############################################################################
 
+detail <- "TRUE" #FV added
+dir <- "."       #FV added
 
 report <- getReport(gdx, scenario = cfg$title, dir = outputdir)
 write.report(report, file = mif)
 q <- as.quitte(report)
 if(all(is.na(q$value))) stop("No values in reporting!")
 
-saveRDS(q, file = rds, version = 2)
+BII <- BII(gdx,level = "reg") #FV added
+
+bii_varname <- "Biodiversity|BII"
+
+BII_dataq <- BII %>% dimSums() %>%  #FV added
+                     as.quitte() %>%
+                      mutate(scenario = case_when(scenario == "(Missing)" ~ cfg$title,
+                                                  scenario != "(Missing)" ~ cfg$title),
+                             model = case_when(model == "(Missing)" ~ cfg$model_name ,
+                                               model != "(Missing)" ~ cfg$model_name ),
+                             variable = case_when(variable == "NA" ~ bii_varname ,
+                                                  variable != "NA" ~ bii_varname )) %>%
+                      print()
+
+
+q_final <- q %>% rbind(BII_dataq) %>% #FV added
+                 print()
+
+saveRDS(q_final, file = rds, version = 2) #FV edited
 
 if(file.exists(runstatistics) & dir.exists(resultsarchive)) {
   stats <- list()

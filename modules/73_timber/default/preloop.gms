@@ -42,7 +42,9 @@ if(s73_timber_demand_switch=1,
 );
 
 ** Alternative wood use scenarios
-$ifthen "%c73_wood_scen%" == "construction"
+$ifthen "%c73_wood_scen%" == "default"
+p73_timber_demand_gdp_pop(t_all,i,"wood") = p73_timber_demand_gdp_pop(t_all,i,"wood");
+$else
 p73_timber_demand_gdp_pop(t_all,i,"wood") = p73_timber_demand_gdp_pop(t_all,i,"wood") * f73_demand_modifier(t_all,"%c73_wood_scen%");
 $endif
 

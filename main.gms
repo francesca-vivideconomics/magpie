@@ -160,16 +160,16 @@ $title magpie
 * md5sum: 32d786ce7ffc33e9cfaba2fa811e084b
 * Repository: ./patch_inputdata
 * 
-* Used data set: additional_data_rev4.32.tgz
-* md5sum: 721ffbc57edddfb5e9b76546c51906f2
-* Repository: https://rse.pik-potsdam.de/data/magpie/public
-* 
-* Used data set: calibration_ipr_v4.6.0.tgz
-* md5sum: 603b8b7ce0ab13aa0bb924b2b4894695
+* Used data set: calib_IPR23_v4p6p6.tgz
+* md5sum: 66b16d91f6085f04eecc16e59055b339
 * Repository: ./patch_inputdata
 * 
-* Used data set: ipr2023.tgz
-* md5sum: 39aadbb7e0623571afd6b911b21830c2
+* Used data set: additional_data_rev4.32.tgz
+* md5sum: NA
+* Repository: https://rse.pik-potsdam.de/data/magpie/public
+* 
+* Used data set: ipr2023_231707.tgz
+* md5sum: 70abc7a225446c877144ceb8d151e708
 * Repository: ./patch_inputdata
 * 
 * Low resolution: c200
@@ -198,15 +198,11 @@ $title magpie
 *     3    9    4   22    1    7    6   26    7   10    5   11    7    8    5   25   26   18
 * * Call: withCallingHandlers(expr, message = messageHandler, warning = warningHandler,     error = errorHandler)
 * 
-* Warning messages:
-* 1: In gms::update_modules_embedding() :
-*   ./modules/38_factor_costs/mixed_reg_feb17/realization.gms not found, this realization cannot be used!
-* 2: In gms::update_modules_embedding() :
-*   ./modules/51_nitrogen/ipcc2006_sep16/realization.gms not found, this realization cannot be used!
-* 3: In gms::update_modules_embedding() :
-*   ./modules/56_ghg_policy/price_jan20/realization.gms not found, this realization cannot be used!
+* Warning message:
+* In file(filename, "r", encoding = encoding) :
+*   cannot open file 'scripts/start_functions.R': No such file or directory
 * 
-* Last modification (input data): Fri May 19 17:26:42 2023
+* Last modification (input data): Mon Jul 17 15:57:45 2023
 * 
 *###################### R SECTION END (VERSION INFO) ###########################
 
@@ -232,7 +228,7 @@ $offlisting
 
 $setglobal c_timesteps  coup2100
 $setglobal c_past  till_2010
-$setglobal c_title  FPS_new
+$setglobal c_title  FPS_new_NDC_SSP2_NUE_pastedNDC_pa3050_t3
 
 scalars
 s_use_gdx   use of gdx files                                       / 0 /
